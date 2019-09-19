@@ -18,6 +18,7 @@
   // use it as the reqeust uri
   var url = '/qc/' + urlParam.join('/')
   var qcodeCanv = document.getElementById('J_Qcode')
+  var downloadLink = document.getElementById('J_DownloadLink')
   var ctx = qcodeCanv.getContext('2d')
   var img = new Image(152, 152);
   img.onload = function () {
@@ -26,6 +27,7 @@
   fetch(url).then(function (res) {
     return res.text().then(function (data) {
       img.src = data
+      downloadLink.href = '/download/' + urlParam.join('/')
     })
   })
 
