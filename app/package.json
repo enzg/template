@@ -1,0 +1,20 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "_.js",
+  "scripts": {
+    "dev": "node _.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^2.2.3",
+    "esm": "^3.2.25",
+    "koa": "^2.8.1",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "level": "^5.0.1",
+    "qrcode": "^1.4.1"
+  }
+}
