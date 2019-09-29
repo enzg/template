@@ -31,7 +31,7 @@ router.get('/qc/:cat/:parent', async ctx => {
   }
   ctx.body = await QRCode.toDataURL(url, opt)
 })
-router.get('/download', async ctx => {
+router.get('/download/:cat/:parent', async ctx => {
   // record parentId and client ip to db
   // redirect to the apk url
   const clientIP = ctx.request.ip

@@ -20,6 +20,7 @@
   if (urlParam[1] !== '-1' && document.getElementById('J_Invite'))
     document.getElementById('J_Invite').innerHTML = '<p>[邀请码/INVITE CODE]</p><pre>' + urlParam[1] + '</pre>'
 
+
   var bannerImage = document.getElementById('J_Banner')
   if (bannerImage) {
     if (urlParam[0] === 'agent') {
