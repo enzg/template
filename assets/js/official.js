@@ -17,6 +17,17 @@
   // if player or agent url matched
   // use it as the reqeust uri
   var url = '/qc/' + urlParam.join('/')
+  if (urlParam[1] !== '-1' && document.getElementById('J_Invite'))
+    document.getElementById('J_Invite').innerHTML = '<p>[邀请码/INVITE CODE]</p><pre>' + urlParam[1] + '</pre>'
+
+  var bannerImage = document.getElementById('J_Banner')
+  if (bannerImage) {
+    if (urlParam[0] === 'agent') {
+      bannerImage.src = 'assets/img/agent.png'
+    } else {
+      bannerImage.src = 'assets/img/yibo.png'
+    }
+  }
   var qcodeCanv = document.getElementById('J_Qcode')
   var downloadLink = document.getElementById('J_DownloadLink')
   var ctx = qcodeCanv.getContext('2d')
@@ -29,6 +40,8 @@
       img.src = data
       downloadLink.href = '/download/' + urlParam.join('/')
     })
+  }).catch(function (err) {
+
   })
 
 })(window)

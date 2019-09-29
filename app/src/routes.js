@@ -1,11 +1,11 @@
 import Router from 'koa-router'
 import { Cfg } from './config'
-import level from 'level'
 import QRCode from 'qrcode'
 
 const router = new Router()
-const db = level('yibo')
 
+
+const mem = {}
 router.get('/ping', async ctx => {
   ctx.body = 'pong'
 })
@@ -13,14 +13,14 @@ router.get('/ping', async ctx => {
 router.get('/parent', async ctx => {
   // get client ip
   const clientIP = ctx.request.ip
-  const parent = await db.get(clientIP).catch(err => {
-    console.log(`${clientIP} lookup failed,${err}`)
-    Promise.resolve({
-      parentId: -1
-    })
-  })
+  // const parent = await db.get(clientIP).catch(err => {
+  //   console.log(`${clientIP} lookup failed,${err}`)
+  //   Promise.resolve({
+  //     parentId: -1
+  //   })
+  // })
   ctx.body = {
-    parentId: parent
+    parentId: mem[clientIP] || -1
   }
   // lookup db for parent id
 })
@@ -31,16 +31,13 @@ router.get('/qc/:cat/:parent', async ctx => {
   }
   ctx.body = await QRCode.toDataURL(url, opt)
 })
-router.get('/download/:cat/:parent', async ctx => {
+router.get('/download', async ctx => {
   // record parentId and client ip to db
   // redirect to the apk url
   const clientIP = ctx.request.ip
   const parentId = ctx.params.parent || -1
   const cat = ctx.params.cat || 'player'
-  await db.put(clientIP, parentId).catch(err => {
-    console.log(`save ${clientIP} failed ${err}`)
-  })
-  console.log(Cfg[cat]['apk'])
+  mem[clientIP] = parentId
   ctx.redirect(Cfg[cat]['apk'])
 })
 

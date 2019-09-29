@@ -40,7 +40,16 @@
     .download-section {
       text-align: center;
       font-size: 0;
+    }
 
+    .download-section .invite-code {
+      font-size: 4vw;
+      color: black;
+    }
+
+    .download-section .invite-code>pre {
+      font-size: 8vw;
+      color: antiquewhite
     }
 
     .official-code {
@@ -57,9 +66,10 @@
     <!-- <img src="assets/img/log_corner.png" alt="banner" class="logo-corner"> -->
     <div class="main-header">
       <div class="official-code"><canvas width="152" height="152" id="J_Qcode"></canvas></div>
-      <img style="margin-top: 7px;" src="assets/img/yibo.png" alt="tip" width="198px" height="175px">
+      <img style="margin-top: 7px;" src="assets/img/yibo.png" alt="tip" width="198px" height="175px" id="J_Banner">
     </div>
     <div class="download-section">
+      <div class="invite-code" id="J_Invite"></div>
       <a href="/" style="display: inline-block;" id="J_DownloadLink">
         <img src="assets/img/down.png" alt="" width="400" height="210">
       </a>
